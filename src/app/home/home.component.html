@@ -1,0 +1,63 @@
+<h3 style="display: flex; justify-content: center;">{{time}}</h3>
+<div class="container ">
+ <div class="row">
+     <div class="col">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              World Clock
+            </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> <select class="form-select form-select-sm" [(ngModel)]="selected_location" aria-label="Default select example">
+    <option selected>select the location</option>
+    <option *ngFor="let loc of location">{{loc}}</option>
+    </select></li>
+    <li class="list-group-item"><button class="btn btn-light" (click)="timezone()" >select</button></li> 
+    <li class="list-group-item"><h2>{{selected_location}}</h2></li>
+    <li class="list-group-item"><h4>{{timeat_location}}</h4></li>
+   </ul>       
+        </div>
+     </div>
+<div class="col">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+           stop watch
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{stopwatch_hrs}}:{{stopwatch_min}}:{{stopwatch_sec}}</li>
+            <li class="list-group-item"><button class="btn btn-light" (click)="start_stopwatch()">start</button></li>
+            <li class="list-group-item"><button class="btn btn-light" (click)="stop_stopwatch()">stop</button></li>
+            <li class="list-group-item"><button class="btn btn-light" (click)="reset_stopwatch()">reset</button></li>
+        </ul>
+
+    </div>
+</div>
+<div class="col">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+           Timer
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <label> select the timer</label>    
+            </li>
+            <li class="list-group-item"><input class="form-control" type="text" placeholder="enter time in minutes"  [(ngModel)]="timer" /></li>
+            <li class="list-group-item"><button class="btn btn-light" (click)="create_timer()">create Timer</button></li>
+            <li class="list-group-item">{{timer}}:{{timer_seconds}}</li>
+        </ul>
+
+    </div>
+</div>
+<div class="col">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+           Reminders
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"></li>
+            <li class="list-group-item"></li>
+        </ul>
+
+    </div>
+</div>
+</div>
+</div>
