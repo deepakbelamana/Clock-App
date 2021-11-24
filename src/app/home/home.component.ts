@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
    public is_stop_disabled:boolean=true;
    public is_resume_disabled:boolean=true;
    public create_timer_isdisabled:boolean=false;
-
+    public is_reset_disabled:boolean=true;
   ngOnInit(): void {
      setInterval(()=>
      {
@@ -472,6 +472,7 @@ export class HomeComponent implements OnInit {
      },1000)
      this.isdisabled=!this.isdisabled;
      this.is_stop_disabled=!this.is_stop_disabled;
+     this.is_reset_disabled=false;
     
   }  
     resume_stopwatch()
@@ -507,10 +508,11 @@ export class HomeComponent implements OnInit {
       this.stopwatch_min=0;
       this.stopwatch_sec=0;
       clearInterval(this.stopwatch);
-      this.isdisabled=!this.isdisabled
-      this.is_stop_disabled=!this.is_stop_disabled;
-      this.is_resume_disabled=!this.is_resume_disabled;
+      this.isdisabled=false;
+      this.is_stop_disabled=true;
+      this.is_resume_disabled=true;
       this.stop_and_pause="pause";
+      this.is_reset_disabled=true;
   }
          
          

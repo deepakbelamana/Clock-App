@@ -26,7 +26,7 @@
             <li class="list-group-item"><h1>{{stopwatch_hrs}}:{{stopwatch_min}}:{{stopwatch_sec}}</h1></li>
             <li class="list-group-item"><button class="btn btn-secondary" (click)="start_stopwatch()" [disabled]="isdisabled">start</button></li>
             <li class="list-group-item"><button class="btn btn-secondary" (click)="stop_stopwatch()" [disabled]="is_stop_disabled" style="margin:5px;">stop</button><button class="btn btn-secondary"(click)="resume_stopwatch()" [disabled]="is_resume_disabled" style="margin:5px;" >resume</button></li>
-            <li class="list-group-item"><button class="btn btn-secondary" (click)="reset_stopwatch()">reset</button></li>
+            <li class="list-group-item"><button class="btn btn-secondary" (click)="reset_stopwatch()" [disabled]="is_reset_disabled">reset</button></li>
         </ul>
 
     </div>
