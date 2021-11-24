@@ -20,6 +20,12 @@ export class HomeComponent implements OnInit {
    public stopwatch_min:any;
    public stopwatch_sec:any;
    public stopwatch:any;
+   public stop_and_pause:any="pause";
+   public isdisabled:boolean=false
+   public is_stop_disabled:boolean=true;
+   public is_resume_disabled:boolean=true;
+   public create_timer_isdisabled:boolean=false;
+
   ngOnInit(): void {
      setInterval(()=>
      {
@@ -428,6 +434,7 @@ export class HomeComponent implements OnInit {
   {
        this.timer_seconds=60; 
        this.timer--;
+       this.create_timer_isdisabled=!this.create_timer_isdisabled;
       var timerset= setInterval(()=>
        {
           this.timer_seconds--;
@@ -444,11 +451,13 @@ export class HomeComponent implements OnInit {
             this.timer_seconds=0;
             clearTimeout(timerset);
             alert("timer");
+            this.create_timer_isdisabled=!this.create_timer_isdisabled;
           }
        },1000)
   }
   start_stopwatch()
   {
+     
       this.stopwatch_hrs=0;
       this.stopwatch_min=0;
       this.stopwatch_sec=0;
@@ -461,18 +470,47 @@ export class HomeComponent implements OnInit {
            this.stopwatch_sec=0;
          }
      },1000)
+     this.isdisabled=!this.isdisabled;
+     this.is_stop_disabled=!this.is_stop_disabled;
+    
   }  
+    resume_stopwatch()
+    {
+      this.stopwatch= setInterval(()=>
+      {
+          this.stopwatch_sec++;
+          if(this.stopwatch_sec==60)
+          {
+            this.stopwatch_min++;
+            this.stopwatch_sec=0;
+          }
+      },1000) 
+      this.stop_and_pause="pause";
+      this.is_stop_disabled=!this.is_stop_disabled;  
+      this.is_resume_disabled=!this.is_resume_disabled;
+    }
   stop_stopwatch()
   {
-    clearInterval(this.stopwatch);
 
+   
+      this.stop_and_pause="resume";
+      clearInterval(this.stopwatch);
+      this.is_stop_disabled=!this.is_stop_disabled;  
+      this.is_resume_disabled=!this.is_resume_disabled;
+      
   }
+  
   
   reset_stopwatch()
   {
       this.stopwatch_hrs=0;
       this.stopwatch_min=0;
       this.stopwatch_sec=0;
+      clearInterval(this.stopwatch);
+      this.isdisabled=!this.isdisabled
+      this.is_stop_disabled=!this.is_stop_disabled;
+      this.is_resume_disabled=!this.is_resume_disabled;
+      this.stop_and_pause="pause";
   }
          
          
