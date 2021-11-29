@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
    public create_timer_textbox:boolean=false;
    public reminder_hrs:number;
    public reminder_min:number;
-   public reminder_msg:string=" ";
+   public reminder_msg:string;
    public create_reminder_isdisabled:boolean=false;
   ngOnInit(): void {
      setInterval(()=>
