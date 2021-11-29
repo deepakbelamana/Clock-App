@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
    public selected_location:any;
    public data:any;
    public timeat_location:any;
-   public timer:any;
+   public timer:number;
    public timer_seconds:any;
    public stopwatch_hrs:any;
    public stopwatch_min:any;
@@ -24,15 +24,16 @@ export class HomeComponent implements OnInit {
    public isdisabled:boolean=false
    public is_stop_disabled:boolean=true;
    public is_resume_disabled:boolean=true;
-   public create_timer_isdisabled:boolean=false;
+   public create_timer_isdisabled:boolean;
     public is_reset_disabled:boolean=true;
+    public create_timer_textbox:boolean=false;
   ngOnInit(): void {
      setInterval(()=>
      {
       var d=new Date;
         this.time= d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
      },1000)
-   
+
   }
   public location:string[]=["Africa/Abidjan",
     "Africa/Accra",
@@ -434,7 +435,8 @@ export class HomeComponent implements OnInit {
   {
        this.timer_seconds=60; 
        this.timer--;
-       this.create_timer_isdisabled=!this.create_timer_isdisabled;
+       this.create_timer_isdisabled=true;
+       this.create_timer_textbox=true;
       var timerset= setInterval(()=>
        {
           this.timer_seconds--;
@@ -451,7 +453,8 @@ export class HomeComponent implements OnInit {
             this.timer_seconds=0;
             clearTimeout(timerset);
             alert("timer");
-            this.create_timer_isdisabled=!this.create_timer_isdisabled;
+            this.create_timer_isdisabled=false;
+            this.create_timer_textbox=false;
           }
        },1000)
   }

@@ -40,8 +40,8 @@
             <li class="list-group-item">
                 <label> select the timer</label>    
             </li>
-            <li class="list-group-item"><input class="form-control" type="text" placeholder="enter time in minutes"  [(ngModel)]="timer" /></li>
-            <li class="list-group-item"><button class="btn btn-secondary" (click)="create_timer()" [disabled]="create_timer_isdisabled">create Timer</button></li>
+            <li class="list-group-item"><input class="form-control" type="number" placeholder="enter time in minutes" [disabled]="create_timer_textbox" [(ngModel)]="timer" /></li>
+            <li class="list-group-item"><button class="btn btn-secondary" (click)="create_timer()" [disabled]="!timer">create Timer</button></li>
             <li class="list-group-item"><h1>{{timer}}:{{timer_seconds}}</h1></li>
         </ul>
 
