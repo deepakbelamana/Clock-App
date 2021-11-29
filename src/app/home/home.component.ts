@@ -25,8 +25,12 @@ export class HomeComponent implements OnInit {
    public is_stop_disabled:boolean=true;
    public is_resume_disabled:boolean=true;
    public create_timer_isdisabled:boolean;
-    public is_reset_disabled:boolean=true;
-    public create_timer_textbox:boolean=false;
+   public is_reset_disabled:boolean=true;
+   public create_timer_textbox:boolean=false;
+   public reminder_hrs:number;
+   public reminder_min:number;
+   public reminder_msg:string=" ";
+   public create_reminder_isdisabled:boolean=false;
   ngOnInit(): void {
      setInterval(()=>
      {
@@ -433,7 +437,7 @@ export class HomeComponent implements OnInit {
   }
   create_timer()
   {
-       this.timer_seconds=60; 
+       this.timer_seconds=59; 
        this.timer--;
        this.create_timer_isdisabled=true;
        this.create_timer_textbox=true;
@@ -518,9 +522,20 @@ export class HomeComponent implements OnInit {
       this.is_reset_disabled=true;
   }
          
-         
-         
-    
+   create_reminder()
+   {
+      alert("reminder created..!     " + this.reminder_msg + "  at  " + this.reminder_hrs+ ':'+ this.reminder_min );
+      var reminder_=setInterval(()=>{  var time_=new Date();
+        this.create_reminder_isdisabled=true;
+      if(this.reminder_hrs== time_.getHours() && this.reminder_min==time_.getMinutes())
+      {
+          alert(this.reminder_msg +"  "+ this.reminder_hrs+ ':'+ this.reminder_min);
+          clearTimeout(reminder_);
+          this.create_reminder_isdisabled=false;
+          this.reminder_hrs=this.reminder_min=NaN;
+          this.reminder_msg="Remind about";
+      }},1000)     
+   }         
 }
 
 

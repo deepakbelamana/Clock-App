@@ -40,8 +40,8 @@
             <li class="list-group-item">
                 <label> select the timer</label>    
             </li>
-            <li class="list-group-item"><input class="form-control" type="number" placeholder="enter time in minutes" [disabled]="create_timer_textbox" [(ngModel)]="timer" /></li>
-            <li class="list-group-item"><button class="btn btn-secondary" (click)="create_timer()" [disabled]="!timer">create Timer</button></li>
+            <li class="list-group-item"><input class="form-control" type="number" placeholder="enter time in minutes" [disabled]="create_timer_textbox" [(ngModel)]="timer" min='1' onkeyup="if( this.value <1 ) this.value = null;"/></li>
+            <li class="list-group-item"><button class="btn btn-secondary" (click)="create_timer()" [disabled]="!timer || create_timer_isdisabled">create Timer</button></li>
             <li class="list-group-item"><h1>{{timer}}:{{timer_seconds}}</h1></li>
         </ul>
 
@@ -53,8 +53,10 @@
            Reminders
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"></li>
-            <li class="list-group-item"></li>
+            <li class="list-group-item"><input class="form-control" type="number" [(ngModel)]="reminder_hrs" min="0" max="23" placeholder="enter hours" onkeyup="if(this.value > 23 || this.value <0 ) this.value = null;"/></li>
+            <li class="list-group-item"><input class="form-control" type="number" [(ngModel)]="reminder_min" min="0" max="59" placeholder="enter minutes" onkeyup="if(this.value > 59 || this.value <0) this.value = null;"/></li>
+            <li class="list-group-item"><input class="form-control" type="text" [(ngModel)]="reminder_msg" placeholder="Remind about"/></li> 
+            <li class="list-group-item"><button class="btn btn-secondary" (click)="create_reminder()" [disabled]="((!reminder_hrs && !reminder_min) || create_reminder_isdisabled ) ">create Reminder</button></li>
         </ul>
 
     </div>
